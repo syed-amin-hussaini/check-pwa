@@ -4,9 +4,9 @@ const withPWA = require('next-pwa')({
 });
 
 module.exports = {
+  ...withPWA,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  ...withPWA,
   // other next.js config options
 };
