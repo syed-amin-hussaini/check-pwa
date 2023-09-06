@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Oreo",
-    "short_name": "Oreo",
-    "description": "Oreo app",
+    "name": "Oreos",
+    "short_name": "Oreos",
+    "description": "Oreo apps",
     "icons": [
         {
             "src": "/icon-192x192.png",
