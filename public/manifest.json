@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Testing-Pwa",
-    "short_name": "Testing-Pwa",
-    "description": "Next-PWA",
+    "name": "Oreo",
+    "short_name": "Oreo",
+    "description": "Oreo app",
     "icons": [
         {
             "src": "/icon-192x192.png",
