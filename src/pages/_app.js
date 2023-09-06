@@ -1,8 +1,16 @@
 import { SessionProvider } from "next-auth/react"
 import Head from "next/head"
 import Script from "next/script"
+import { useEffect } from "react";
 
-function MyApp({ Component, pageProps,session }) {
+function MyApp({ Component, pageProps, session }) {
+  useEffect(() => {
+        if (typeof window !== 'undefined') {
+                const loader = document.getElementById('globalLoader');
+            if (loader)
+                loader.style.display = 'none';
+        }
+    }, []);
   return (
     // <SessionProvider session={pageProps.session}>
     <SessionProvider session={session}>
