@@ -1,58 +1,34 @@
 export default `
-body{
-display: block;
-}
-#globalLoader{
-    position: fixed;
-    z-index: 1700;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    display: flex;
-    left: 0,
-    right: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
 .loader {
- --clr: #3498db;
- /* color of spining  */
- width: 50px;
- height: 50px;
- position: relative;
+  width: 80px;
+  height: 75px;
+  --c:no-repeat radial-gradient(farthest-side, #f7b261 85%,#b97850,#0000);
+  --b:no-repeat radial-gradient(farthest-side, #734b46 94%,#0000);
+  --s:8px 8px,8px 8px,8px 8px,40px 40px;
+  --e:0 0, 0 0,0 0, 0 0;
+  background:
+    var(--b) 55% 47%,
+    var(--b) 60% 66%,
+    var(--b) 37% 43%,
+    var(--c) 50% 50%,
+    var(--b) 15px 4px,
+    var(--b) 4px  14px,
+    var(--b) 27px 18px,
+    var(--c) 0    0,
+    var(--b) calc(100% - 15px)  4px,
+    var(--b) calc(100% - 4px)  14px,
+    var(--b) calc(100% - 27px) 18px,
+    var(--c) 100% 0/40px 40px,
+    var(--b) 24px 47px,
+    var(--b) 50%  43px,
+    var(--b) 60%  58px,
+    var(--c) 50%  100%;
+  animation: l5 3s infinite;
 }
-.loader div:nth-child(1), .loader div:nth-child(2) {
- content: "";
- position: absolute;
- top: -10px;
- left: -10px;
- width: 100%;
- height: 100%;
- border-radius: 100%;
- border: 10px solid transparent;
- border-top-color: var(--clr);
-}
-.loader div:nth-child(1) {
- z-index: 100;
- animation: spin 1s infinite;
-}
-.loader div:nth-child(2) {
- border: 10px solid #ccc;
-}
-@keyframes spin {
- 0% {
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
- }
- 100% {
-  -webkit-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
- }
+@keyframes l5 {
+  0%    ,20% {background-size: var(--s),var(--s),var(--s),var(--s)}
+  20.01%,40% {background-size: var(--e),var(--s),var(--s),var(--s)}
+  40.01%,60% {background-size: var(--e),var(--e),var(--s),var(--s)}
+  60.01%,80% {background-size: var(--e),var(--e),var(--e),var(--s)}
+  80.01%,100%{background-size: var(--e),var(--e),var(--e),var(--e)}
 }`;
