@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Oreo new",
-    "short_name": "Oreo new",
-    "description": "Oreo new",
+    "name": "Oreo news",
+    "short_name": "Oreo news",
+    "description": "Oreo news",
     "icons": [
         {
             "src": "/icon-192x192.png",
