@@ -7,24 +7,33 @@ import {  useRouter } from "next/router";
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
-  // const loading = status === "loading";
-  // const router = useRouter();
+  const loading = status === "loading";
+  const router = useRouter();
+  console.log({ session });
 
-  // const handleSignIn = async (provider) => {
-  //   const result = await signIn(provider);
-  //   try {
-  //     const result = await signIn(provider);
-  //     console.log("Sign-in result:", result);
-  //   } catch (error) {
-  //     console.error("Sign-in error:", error);
+  const handleSignIn = async (provider) => {
+    const result = await signIn(provider);
+    try {
+      const result = await signIn(provider);
+      console.log("Sign-in result:", result);
+    } catch (error) {
+      console.error("Sign-in error:", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   if (session !== null) {
+  //     console.log("Redirecting to registration");
+  //     router.push("/login");
+  //   } else { 
+
   //   }
-  // };
-
+  // }, []);
 
   return (
     <div className={{}}>
       <Head>
-        <title>Nextjs | Login</title>
+        <title>Nextjs | Next-Auth</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
@@ -42,14 +51,14 @@ const Login = () => {
             Oreo
           </h2>
           <a
-            onClick={() => signIn("google")}
+            onClick={() => handleSignIn("google")}
             className={`${styles.button} ${styles.button_google}`}
           >
             <i className={`${styles.icon} fa fa-google`}></i>
             Sign in Google
           </a>
           <a
-            onClick={() => signIn("facebook")}
+            onClick={() => handleSignIn("facebook")}
             className={`${styles.button} ${styles.button_facebook}`}
           >
             <i className={`${styles.icon}  fa fa-facebook`}></i>

@@ -1,24 +1,9 @@
-import Head from "next/head";
-// import styles from "../styles/Home.module.css";
-import { useSession } from "next-auth/react";
-import Nav from "@/components/Nav";
+import React from 'react'
 
-export default function TermsOfUse() {
-  const { data: session, status } = useSession();
-  const loading = status === "loading";
-  console.log({ session });
-
+const termsofuse = () => {
   return (
-    <div className={{}}>
-      <Head>
-        <title>Nextjs | Next-Auth</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Nav />
-      <main className={{}}>
-        <h1 className={{}}>Term and Conditions</h1>
-        
-      </main>
-    </div>
-  );
+    <div>termsofuse</div>
+  )
 }
+
+export default termsofuse
