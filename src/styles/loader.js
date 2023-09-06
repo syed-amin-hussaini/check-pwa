@@ -2,6 +2,10 @@ export default `
 .loader {
   width: 80px;
   height: 75px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 99;
   --c:no-repeat radial-gradient(farthest-side, #f7b261 85%,#b97850,#0000);
   --b:no-repeat radial-gradient(farthest-side, #734b46 94%,#0000);
   --s:8px 8px,8px 8px,8px 8px,40px 40px;

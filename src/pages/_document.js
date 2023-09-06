@@ -13,7 +13,7 @@ class MyDocument extends Document {
           <style>{loader}</style>
         </Head>
         <body>
-          <div id={"globalLoader"}>
+          <div id={"globalLoader"} style={{display:"flex"}}>
             <div className="loader">
               <div />
               <div />
