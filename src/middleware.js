@@ -4,21 +4,21 @@ import { getToken } from "next-auth/jwt";
 
 
 export default async function middleware(req) {
-  // const myHeaders = new Headers();
-  // myHeaders.append("Content-Type", "application/json");
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
 
   
-  // const requestOptions = {
-  //   method: "GET",
-  //   redirect: "follow",
-  //   headers: myHeaders,
-  // };
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+    headers: myHeaders,
+  };
 
-  // try {
-  //   const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
-  //   const userIpData = await userIpResponse?.json();
-  //   const userCountry = userIpData?.country_name;
-  //   // console.log(userCountry)
+  try {
+    const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
+    const userIpData = await userIpResponse?.json();
+    const userCountry = userIpData?.country_name;
+    console.log(userCountry)
   //   // const token = req.cookies.get("token");
   //   let user = req?.cookies.get("user")?.value;
   //   if (user) {
@@ -43,9 +43,9 @@ export default async function middleware(req) {
   //     return NextResponse.rewrite(new URL('/profile', req.url));
   //   }
     
-  // } catch (error) {
-  //   console.error("Error fetching user IP data:", error);
-  // }
+  } catch (error) {
+    console.error("Error fetching user IP data:", error);
+  }
 
   // Allow the request to continue processing
   return NextResponse.next();
