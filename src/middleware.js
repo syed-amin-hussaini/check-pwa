@@ -15,21 +15,21 @@ export default async function middleware(req) {
   };
 
   try {
-    const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
-    const userIpData = await userIpResponse?.json();
-    const userCountry = userIpData?.country_name;
-    console.log(userCountry)
+    // const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
+    // const userIpData = await userIpResponse?.json();
+    // const userCountry = userIpData?.country_name;
+    // console.log(userCountry)
   //   // const token = req.cookies.get("token");
-  //   let user = req?.cookies.get("user")?.value;
-  //   if (user) {
-  //     user = JSON?.parse(user) 
-  //   }
-  //   let userDetail = {
-  //     userStatus:user?.profile_status,
-  //     userToken:user?.token,
-  //     userCountry:userCountry,
-  //   }
-  //   console.log("Cookie Result")
+    let user = req?.cookies.get("user")?.value;
+    if (user) {
+      user = JSON?.parse(user) 
+    }
+    let userDetail = {
+      userStatus:user?.profile_status,
+      userToken:user?.token,
+      userCountry:userCountry,
+    }
+    console.log("Cookie Result")
   //   console.log({userDetail})
   //   // const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
   //   // console.log({sessionMiddleware})
