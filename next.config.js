@@ -1,6 +1,12 @@
 const path = require('path');
+const runtimeCaching = require('next-pwa/cache')
+
 const withPWA = require('next-pwa')({
-  dest: 'public'
+  dest: 'public',
+  runtimeCaching: runtimeCaching,
+  buildExcludes: [
+    /middleware\.js$/
+  ]
 });
 
 module.exports = {
