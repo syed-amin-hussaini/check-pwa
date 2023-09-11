@@ -24,11 +24,11 @@ const nextAuthOptions = (req, res) => {
         clientId: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET,
       }),
-      FacebookProvider({
-        clientId: process.env.FACEBOOK_ID,
-        clientSecret: process.env.FACEBOOK_SECRET,
-        scope:"email",
-      }),
+      // FacebookProvider({
+      //   clientId: process.env.FACEBOOK_ID,
+      //   clientSecret: process.env.FACEBOOK_SECRET,
+      //   scope:"email",
+      // }),
     ],
     // pages: {
     //   signIn: "/login",

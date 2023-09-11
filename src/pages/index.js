@@ -39,7 +39,7 @@ const Login = () => {
             Oreos ${process.env.NEXT_PUBLIC_API_URL}
           </h2>
           <a
-            onClick={() => signIn("google")}
+            onClick={() => signIn()}
             className={`${styles.button} ${styles.button_google}`}
           >
             <i className={`${styles.icon} fa fa-google`}></i>
