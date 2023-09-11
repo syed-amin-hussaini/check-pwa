@@ -1,24 +1,29 @@
-import loader from "@/styles/loader";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="apple-touch-icon" href="/icon.png"></link>
-          
           <meta name="theme-color" content="#fff" />
-          <style>{loader}</style>
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/icon.png" />
+          <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            // crossOrigin="anonymous"
+          />
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+          />
         </Head>
         <body>
-          <div id={"globalLoader"} style={{display:"flex"}}>
-            <div className="loader">
-              <div />
-              <div />
-            </div>
-          </div>
+          <script
+            async
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+          ></script>
           <Main />
           <NextScript />
         </body>

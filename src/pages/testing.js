@@ -1,6 +1,7 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import { useSession } from "next-auth/react";
+import Nav from "@/components/Nav";
 
 export default function Testing() {
   const { data: session, status } = useSession();

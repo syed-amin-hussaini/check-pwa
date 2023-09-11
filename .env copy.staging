@@ -20,7 +20,8 @@
 FACEBOOK_ID=233640272541889
 FACEBOOK_SECRET=b202e60a07b3ed5e8cc9653bfec44c31
 
-NEXTAUTH_URL=https://auth-check.vercel.app/api/
+NEXTAUTH_URL=https://auth-check.vercel.app/
+NEXT_PUBLIC_API_URL=https://obackend.hul-hub.com/api/
 
 GOOGLE_ID=90665489312-p2qdtdmoapighdfvjmke1tui024umgia.apps.googleusercontent.com
 GOOGLE_SECRET=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

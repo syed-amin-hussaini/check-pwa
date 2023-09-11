@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import { parseCookies } from 'nookies';
+import { parseCookies } from "nookies";
 import { getToken } from "next-auth/jwt";
-
 
 export default async function middleware(req) {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  
   const requestOptions = {
     method: "GET",
     redirect: "follow",
@@ -15,34 +13,42 @@ export default async function middleware(req) {
   };
 
   try {
-    const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
+    const userIpResponse = await fetch(
+      "https://json.geoiplookup.io/",
+      requestOptions
+    );
     const userIpData = await userIpResponse?.json();
     const userCountry = userIpData?.country_name;
-    console.log(userCountry);
-  //   // const token = req.cookies.get("token");
+    // console.log(userCountry)
+    // const token = req.cookies.get("token");
     let user = req?.cookies.get("user")?.value;
+    console.log({ user });
     if (user) {
-      user = JSON?.parse(user) 
+      user = JSON?.parse(user);
+      console.log({ user });
     }
     let userDetail = {
-      userStatus:user?.profile_status,
-      userToken:user?.token,
-      userCountry:userCountry,
+      userStatus: user?.profile_status ?? "",
+      userToken: user?.auth,
+      userCountry: userCountry,
+    };
+    console.log("Cookie Result");
+    console.log({ userDetail });
+
+    // const sessions = await getToken({
+    //   req,
+    //   secret: process.env.JWT_SECRET,
+    // });
+    // console.log("asd " + sessions);
+
+    if (userCountry === 'Pakistans' && req.url !== '/notallow') {
+      return NextResponse.rewrite(new URL('/notallow', req.url))
     }
-    console.log("Cookie Result")
-    console.log({userDetail})
-  //   // const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
-  //   // console.log({sessionMiddleware})
-  //   if (user === undefined) {
-  //     return NextResponse.rewrite(new URL('/login', req.url))
-  //   }
-  //   if (userCountry === 'Pakistans' && req.url !== '/testing') {
-  //     return NextResponse.rewrite(new URL('/testing', req.url))
-  //   }
-  //   if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-  //     return NextResponse.rewrite(new URL('/profile', req.url));
-  //   }
-    
+    if (userDetail?.userStatus != "" &&  userDetail?.userStatus == "incomplete") {
+      return NextResponse.rewrite(new URL('/profile', req.url));
+    }
+
+    // Your other middleware logic here...
   } catch (error) {
     console.error("Error fetching user IP data:", error);
   }
@@ -52,5 +58,5 @@ export default async function middleware(req) {
 }
 
 export const config = {
-  matcher: '/((?!api|_next|static|public|favicon.ico).*)',
+  matcher: "/((?!api|_next|static|public|favicon.ico).*)",
 };

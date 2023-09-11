@@ -1,31 +1,39 @@
-import { SessionProvider } from "next-auth/react"
-import Head from "next/head"
-import Script from "next/script"
-import { useEffect } from "react";
+import { SessionProvider, getSession } from "next-auth/react";
+import Head from "next/head";
+import Link from "next/link";
+import Script from "next/script";
+import "@/src/styles/globals.scss";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+
 
 function MyApp({ Component, pageProps, session }) {
-  useEffect(() => {
-        if (typeof window !== 'undefined') {
-                const loader = document.getElementById('globalLoader');
-            if (loader)
-                loader.style.display = 'none';
-        }
-    }, []);
   return (
     // <SessionProvider session={pageProps.session}>
     <SessionProvider session={session}>
       <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossOrigin="anonymous" />
-        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" /> */}
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'/>
-     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
       </Head>
-      <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-      
+
       <Component {...pageProps} />
+      
+      <ToastContainer
+        // toastStyle={{background:"#000",color:"#fff"}}
+        // progressStyle={{background:"#7F8FBB"}}
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </SessionProvider>
-  )
+  );
 }
 
 // export async function getServerSideProps(context) {
@@ -38,4 +46,5 @@ function MyApp({ Component, pageProps, session }) {
 //     },
 //   };
 // }
-export default MyApp
+
+export default MyApp;

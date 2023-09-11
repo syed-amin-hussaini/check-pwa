@@ -1,71 +1,60 @@
 import Head from "next/head";
-// import styles from "../styles/Home.module.css";
-import { useSession, getSession  } from "next-auth/react";
-import Nav from "@/components/Nav";
-import { useEffect, useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import styles from "@/src/styles/login.module.scss";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 
-
-export default function Home({user }) {
+const Login = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
-  const loading = status === "loading";
-
-  if (session) {
-    // Access custom parameters
-    const customParams = session.user;
-    console.log(customParams)
-    // ...use customParams as needed
-
-    console.log(customParams)
-  }
-  
-  const [form, setForm] = useState({
-    name: "",
-    age: "",
-    email: "",
-    location: "",
-    number: "",
-
-    submit: true,
-
-    success: false,
-    errStatus: false,
-    errMsg: "",
-  });
-  // console.log({session})
-
-
+  const router = useRouter();
+  let cookies = parseCookies();
+ console.log(cookies?.user)
+  useEffect(() => {
+   
+    if (cookies?.user != undefined) {
+      router.replace("/dashboard");
+    } 
+  }, []);
   return (
-    <div>
+    <div className={{}}>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Oreo | Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-      <main>
-        {loading && <div className={{}}>Loading...</div>}
-        <h1>Hello, {user?.name}!</h1>
-      <p>Email: {user?.email}</p>
-      <p>Custom Token: {user?.customToken}</p>
-      </main>
+      
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div
+          style={{ maxWidth: "450px", width: "100%" }}
+          className="border border-1 max-auto p-4 shadow text-center"
+        >
+          <h2
+            className="text-center fw-bolder text-uppercase mb-3"
+            style={{ color: "#555", letterSpacing: "1px" }}
+          >
+            Oreo ${process.env.NEXT_PUBLIC_API_URL}
+          </h2>
+          <a
+            onClick={() => signIn("google")}
+            className={`${styles.button} ${styles.button_google}`}
+          >
+            <i className={`${styles.icon} fa fa-google`}></i>
+            Sign in Google
+          </a>
+          <a
+            onClick={() => signIn("facebook")}
+            className={`${styles.button} ${styles.button_facebook}`}
+          >
+            <i className={`${styles.icon}  fa fa-facebook`}></i>
+            Sign in Facebook
+          </a>
+        </div>
+      </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-  console.log(session)
-  if (!session || !session.user) {
-    return {
-      redirect: {
-        destination: '/login', // Redirect to login page if not authenticated
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      user: session.user,
-    },
-  };
-}
+};
+export default Login;
