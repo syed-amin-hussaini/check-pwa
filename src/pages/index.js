@@ -36,7 +36,7 @@ const Login = () => {
             className="text-center fw-bolder text-uppercase mb-3"
             style={{ color: "#555", letterSpacing: "1px" }}
           >
-            Oreo ${process.env.NEXT_PUBLIC_API_URL}
+            Oreos ${process.env.NEXT_PUBLIC_API_URL}
           </h2>
           <a
             onClick={() => signIn("google")}
